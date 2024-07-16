@@ -32,7 +32,6 @@ a {
 
 a:hover, li:hover, i:hover {
   transition: 0.3s ease;
-  transform: scale(1.1);
 }
 
 h1 {
@@ -104,6 +103,41 @@ label {
 .tallesButton:hover {
   transition: 0.3s ease;
   background-color: grey;
+}
+
+.hidden {
+  display: none;
+}
+
+h6 {
+  font-weight: 800;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+button:hover {
+  transform: scale(0.9);
+}
+
+button:active {
+  transform: scale(1.2);
+}
+
+.fa-trash:hover {
+  background-color: rgb(215, 61, 61);
+  color: white;
+}
+
+.cantDiv {
+  width: fit-content;
+}
+
+.fa-cart-shopping:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease;
 }
 
 /*# sourceMappingURL=style.css.map */
