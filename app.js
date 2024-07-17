@@ -12,12 +12,13 @@ let cartButton = document.querySelector('#cartButton');
 let cartContainer = document.querySelector('#cartContainer');
 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 let precioFinal = document.querySelector('#precioFinal')
-
+let close = document.querySelector('#x');
 document.addEventListener('DOMContentLoaded', function(){
     searchBar.focus();
     homePageProducts(products);
     carItemsOnLoad();
     showPrice();
+    precioTotal()
 })
 
 let showPrice = () => {
@@ -42,6 +43,10 @@ overlay.addEventListener('click', function(){
         cartBar.style.display = 'none'
         searchBar.focus()
     }
+})
+
+close.addEventListener('click', function(){
+    overlay.click()
 })
 
 navBarButton.addEventListener('click', function(){
@@ -91,7 +96,7 @@ let loadProducts = (product, container, id, index, array) => {
         `   <img src="${product.imagen}" width="150px" class="shadow rounded border m-4" alt="">
             <h6 class="text-center m-2 bg-black text-white rounded shadow p-2">${product.nombre}</h6>
             <div class="talle d-flex flex-row justify-content-cemter align-items-center" id="${id}">
-                        <p class="text-center m-2 bg-ligth text-black rounded shadow p-2">$${product.precio}</p>
+                <p class="text-center m-2 bg-ligth text-black rounded shadow p-2">$${product.precio}</p>
             </div>
         `; 
     div.style.backgroundColor = "#f7f7f7"
@@ -140,7 +145,7 @@ let loadProducts = (product, container, id, index, array) => {
             })
             loadToCart(product.nombre, product.precio, product.imagen, product.talles, id, product.cant);
         }
-        showPrice()
+        precioTotal()
         saveStorage();
     })
         tallesDiv.appendChild(carrito);
@@ -204,3 +209,16 @@ searchBar.addEventListener('input', function(){
         productsDiv.appendChild(message)
     }
 })
+
+let precioTotal = () => {
+    let total = 0;
+    cartItems.forEach((item) => {
+        let totalProduct = item.cant * item.precio
+        total += totalProduct;
+    })
+    precioFinal.textContent = "$" + total
+}
+
+let addMinus = () => {
+    
+}

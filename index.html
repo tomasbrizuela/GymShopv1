@@ -14,6 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="shortcut icon" href="gymshop.png" type="image/x-icon">
     <title>GymShop v1</title>
 </head>
 
@@ -21,7 +22,7 @@
     <nav class="container-fluid">
         <div class="row">
             <div class="col-md-1 d-flex flex-row justify-content-start align-items-center p-2 bg-white" id="navBar">
-                <i class="fa-solid fa-bars p-2" id="navBarButton"></i>
+                <!-- <i class="fa-solid fa-bars p-2" id="navBarButton"></i> -->
             </div>
             <div class="col-md-10 d-flex flex-row justify-content-start align-items-center p-2" id="home">
                 <div class="col-md-6 d-flex justify-content-start">
@@ -29,7 +30,7 @@
                 </div>
             </div>
             <div class="col-md-1 d-flex flex-row justify-content-center align-items-center p-2" id="cart">
-                <i class="fa-solid fa-cart-shopping" id="cartButton"></i>
+                <i class="fa-solid fa-cart-shopping shadow-sm ps-3 pe-3 p-2 rounded" id="cartButton"></i>
             </div>
         </div>
     </nav>
@@ -39,7 +40,7 @@
             <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
                 <h1 class="text-center">GymShop Winter Sale</h1>
                 <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
-                    <label for="searchBar">Search for Products</label>
+                    <label for="searchBar">Search Products</label>
                     <input type="search" name="searchBar" id="searchBar" autocomplete="off" placeholder="i.e. Crossfit">
                 </div>
             </div>
@@ -59,18 +60,32 @@
         <p class="text-center fw-bold">Accessories</p>
     </div>
 
-    <div id="cartBar" class="rounded container" style="display: none;">
+    <div id="cartBar" class="bag container" style="display: none;">
         <div class="row">
-            <div class="col-12 border-bottom">
-                <h6 class="text-center fw-bold m-3 p-2">WELCOME TO YOUR BAG</h6>
+            <div class="col-12 d-flex flex-row justify-content-center align-items-center border-bottom p-0 shadow-sm"
+                id="x">
+                <div class="col-10 d-flex flex-row justify-content-center align-items-center">
+                    <h6 class="text-center fw-bold m-3 p-2">WELCOME TO YOUR BAG</h6>
+                </div>
+                <div class="col-2 d-flex flex-row justify-content-center align-items-center">
+                    <i class="fs-5 fw-lighter shadow-sm rounded m-0 fa-regular fa-circle-xmark"></i>
+                </div>
             </div>
+
             <div class="col-12" id="cartContainer">
 
             </div>
-            <div class="col-12 border-top m-0 p-0 d-flex flex-row justify-content-center align-items-center">
-                <h6 class="text-start col-6 m0 p-4">TOTAL:</h6>
-                <P class="text-end col-6 m0 p-4" id="precioFinal">$129.00</P>
+
+            <div class="col-12 border-top m-0 p-2 d-flex flex-row justify-content-between align-items-center shadow-sm">
+                <div class="d-flex flex-row justify-content-center align-items-center p-2">
+                    <h6 class="text-start col-6 m-1 ps-4">TOTAL:</h6>
+                    <P class="text-end col-6 m-1" id="precioFinal"></P>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <button class="rounded ps-2 pe-2 me-4 pt-1 pb-1 fw-bold text-white" id="buyBtn">Comprar</button>
+                </div>
             </div>
+
         </div>
     </div>
 

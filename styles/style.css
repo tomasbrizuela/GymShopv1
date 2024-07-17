@@ -73,7 +73,7 @@ label {
 
 #cartBar {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 60px;
   min-height: 220px;
   resize: vertical;
@@ -138,6 +138,33 @@ button:active {
 .fa-cart-shopping:hover {
   transform: scale(1.1);
   transition: 0.5s ease;
+}
+
+.bag {
+  background-color: #f7f7f7;
+  border-radius: 20px;
+}
+
+.grey {
+  background-color: #f7f7f7;
+}
+
+#cartContainer {
+  max-height: 195px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+#cartContainer::-webkit-scrollbar {
+  width: 15px; /* Ancho de la scrollbar */
+}
+
+#buyBtn {
+  background-color: black;
+}
+
+#buyBtn:hover {
+  background-color: rgb(2, 136, 2);
 }
 
 /*# sourceMappingURL=style.css.map */
