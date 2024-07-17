@@ -10,6 +10,7 @@ let productsDiv = document.querySelector('#products')
 let cartBar = document.querySelector('#cartBar');
 let cartButton = document.querySelector('#cartButton');
 let cartContainer = document.querySelector('#cartContainer');
+let precioArs = document.querySelector('#precioFinalArs');
 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 let precioFinal = document.querySelector('#precioFinal')
 let close = document.querySelector('#x');
@@ -18,9 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
     homePageProducts(products);
     carItemsOnLoad();
     showPrice();
-    setTimeout(()=>{
-        precioTotal()
-    },500)
+    precioTotal()
+    console.log(cartItems)
 })
 
 let showPrice = () => {
@@ -147,9 +147,12 @@ let loadProducts = (product, container, id, index, array) => {
             })
             loadToCart(product.nombre, product.precio, product.imagen, product.talles, id, product.cant);
         }
+        let number = document.getElementById(`cant${id}`)
+        number.textContent = product.cant
         precioTotal()
         saveStorage();
     })
+
         tallesDiv.appendChild(carrito);
 }
 
@@ -167,25 +170,26 @@ let loadToCart = (product, price, img, talle, id, cant) => {
                         <p>$${price}</p>
                         <div class="col-6 d-flex flex-row justify-content-between align-items-center border rounded shadow-sm cantDiv p-0" id="divBtn${id}">
                             <button id="buttonLess${id}" class="p-2 border-0 me-2 rounded">-</button>
-                            <p class="p-2  border-0 m-0 me-2">${cant}</p>
+                            <p class="p-2  border-0 m-0 me-2" id="cant${id}">${cant}</p>
                             <button id="buttonPlus${id}" class="p-2 border-0 rounded">+</button>
                         </div>
                     </div>`;
-    
-    
-    // document.createElement('div');
-    // div1.className = ""
-    
     setTimeout(() => {
         let trash = document.createElement('i');
         trash.className = "fa-solid fa-trash border-0 rounded p-2";
+        let plus = document.getElementById(`buttonPlus${id}`)
+        let less = document.getElementById(`buttonLess${id}`)
+
         trash.addEventListener('click', function(){
-        cartElement.remove()
-        let cartNew = cartItems.filter(items => items.id != id)
-        cartItems = cartNew;
-        saveStorage()
-        showPrice()
-    })
+            cartElement.remove()
+            let cartNew = cartItems.filter(items => items.id != id)
+            cartItems = cartNew;
+            saveStorage()
+            precioTotal()
+
+            })
+        addMinus(plus, id);
+        Minus(less, id, trash)
         let divi = document.querySelector(`#divCant${id}`);
         let divi2 = document.querySelector(`#divBtn${id}`)
         divi2.appendChild(trash)
@@ -218,9 +222,46 @@ let precioTotal = () => {
         let totalProduct = item.cant * item.precio
         total += totalProduct;
     })
-    precioFinal.textContent = "$" + total
+
+    let usd = Math.round(total*100)/100
+    precioFinal.textContent = "$" + usd
+    ars(usd)
+    console.log(typeof usd)
 }
 
-let addMinus = () => {
-    
+let addMinus = (button, id) => {
+    button.addEventListener('click', function(){
+    let findItem = cartItems.find(item => item.id === id)
+    let cantidad = findItem.cant
+    findItem.cant = cantidad + 1;
+    let number = document.getElementById(`cant${id}`)
+    number.textContent = findItem.cant
+    saveStorage()
+    precioTotal()
+})}
+
+let Minus = (button, id, trash) => {
+    button.addEventListener('click', function(){
+    let findItem = cartItems.find(item => item.id === id)
+    let cantidad = findItem.cant
+    findItem.cant = cantidad - 1;
+    if(findItem.cant == 0){
+        trash.click()
+    } else {
+        let number = document.getElementById(`cant${id}`)
+        number.textContent = findItem.cant
+    }
+    saveStorage()
+    precioTotal()
+})}
+
+let ars = async (precioUsd) => {
+    let url = "https://dolarapi.com/v1/dolares/blue";
+    let response = await fetch(url);
+    let data = await response.json()
+    let precio = Math.round(data.compra);
+    console.log(precio)
+    console.log(precioUsd)
+    console.log(precioUsd * precio)
+    precioArs.textContent = "ARS $" + Math.round(precioUsd * precio * 100)/100
 }

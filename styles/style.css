@@ -75,8 +75,7 @@ label {
   position: absolute;
   right: 10px;
   top: 60px;
-  min-height: 220px;
-  resize: vertical;
+  min-height: 50px;
   width: 400px;
   color: black;
   background-color: rgb(255, 255, 255);
@@ -150,6 +149,7 @@ button:active {
 }
 
 #cartContainer {
+  min-height: 20px;
   max-height: 195px;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -165,6 +165,14 @@ button:active {
 
 #buyBtn:hover {
   background-color: rgb(2, 136, 2);
+}
+
+.hide {
+  display: none;
+}
+
+#precioFinalArs:hover ~ #precioFinal {
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */
