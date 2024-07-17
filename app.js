@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', function(){
     homePageProducts(products);
     carItemsOnLoad();
     showPrice();
-    precioTotal()
+    setTimeout(()=>{
+        precioTotal()
+    },500)
 })
 
 let showPrice = () => {
