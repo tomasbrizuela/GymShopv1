@@ -14,6 +14,9 @@ let precioArs = document.querySelector('#precioFinalArs');
 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 let precioFinal = document.querySelector('#precioFinal')
 let close = document.querySelector('#x');
+let currency = document.querySelector('#moneda')
+let totalArs = document.querySelector('#totalPalabra');
+let moneda = "usd";
 document.addEventListener('DOMContentLoaded', function(){
     searchBar.focus();
     homePageProducts(products);
@@ -225,8 +228,7 @@ let precioTotal = () => {
 
     let usd = Math.round(total*100)/100
     precioFinal.textContent = "$" + usd
-    ars(usd)
-    console.log(typeof usd)
+    return usd
 }
 
 let addMinus = (button, id) => {
@@ -260,8 +262,18 @@ let ars = async (precioUsd) => {
     let response = await fetch(url);
     let data = await response.json()
     let precio = Math.round(data.compra);
-    console.log(precio)
-    console.log(precioUsd)
-    console.log(precioUsd * precio)
-    precioArs.textContent = "ARS $" + Math.round(precioUsd * precio * 100)/100
+    precioFinal.textContent = "ARS$" + Math.round(precioUsd * precio * 100)/100
+
 }
+
+currency.addEventListener('click', function(){
+    currency.classList.toggle('ars');
+    currency.classList.toggle('usd');
+    if(moneda === "usd"){
+            ars(precioTotal())
+            moneda = "ars"
+    } else {
+        precioTotal()
+        moneda = "usd"
+    }
+})

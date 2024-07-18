@@ -175,4 +175,27 @@ button:active {
   display: block;
 }
 
+#moneda {
+  border-radius: 13px;
+}
+
+.ars {
+  background: linear-gradient(to bottom, #74acdf 33.33%, #ffffff 33.33% 66.66%, #74acdf 66.66%);
+  transition: 0.4s ease;
+}
+
+.usd {
+  background: #bf0a30;
+  color: white;
+  transition: 0.4s ease;
+}
+
+.change:hover {
+  transform: scale(0.9);
+}
+
+.change:active {
+  transform: scale(1.1);
+}
+
 /*# sourceMappingURL=style.css.map */
